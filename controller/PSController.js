@@ -17,6 +17,42 @@ const Holding = async (req,res) => {
     }
 }
 
+
+
+const HoldingAuctionList = async (req,res) => {
+    try {
+     
+     let  resp = await PsServices.holdingAuctionList()
+
+     if(resp){
+         return response("Success..!!!",resp.data,200,res)
+     }
+
+    } catch (error) {
+     console.log(error);
+     return response("SOmething Wrong....!!",{},500,res)
+    }
+}
+
+
+
+const Position = async (req,res) => {
+    try {
+     
+     let  resp = await PsServices.position()
+
+     if(resp){
+         return response("Success..!!!",resp.data,200,res)
+     }
+
+    } catch (error) {
+     console.log(error);
+     return response("SOmething Wrong....!!",{},500,res)
+    }
+}
+
 module.exports = {
-    Holding
+    Holding,
+    HoldingAuctionList,
+    Position
 }
