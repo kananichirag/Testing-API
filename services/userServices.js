@@ -11,7 +11,7 @@ var kc = new KiteConnect({
   api_key: process.env.API_KEY,
 });
 
-kc.generateSession("otBfwVvJNuPC23z8USs7T26IHsVRaxCM", process.env.API_SECRET)
+kc.generateSession(process.env.REQUEST_TOKEN, process.env.API_SECRET)
   .then(function (response) {
     init();
     res({data:response})
