@@ -44,8 +44,30 @@ module.exports = {
           .get("https://api.kite.trade/user/margins", {
             headers: {
               "X-Kite-Version": "3",
-              Authorization:
-                "token 8ply7h3jrtk5gbwi:4G7d79JVl64C94JRz9zjv8NgQuM4nmAR",
+              Authorization: `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`,
+            },
+          })
+          .then((response) => {
+            res(response);
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } catch (error) {
+        console.log(error);
+        rej({ status: 500, message: "Something Went Wrong..!!!" });
+      }
+    });
+  },
+  userProfile: () => {
+    return new Promise(async (res, rej) => {
+      try {
+        axios
+          .get("https://api.kite.trade/user/profile", {
+            headers: {
+              "X-Kite-Version": "3",
+              Authorization: `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`,
             },
           })
           .then((response) => {
