@@ -1,4 +1,5 @@
 const path = require("path");
+var KiteConnect = require("kiteconnect").KiteConnect;
 const axios = require("axios");
 require("dotenv").config({ path: path.join(__dirname, "./config/.env") });
 
@@ -43,7 +44,6 @@ module.exports = {
             headers: {
               "X-Kite-Version": "3",
               Authorization: `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`,
-
             },
           })
           .then((response) => {
@@ -66,8 +66,9 @@ module.exports = {
           .get("https://api.kite.trade/user/profile", {
             headers: {
               "X-Kite-Version": "3",
-              Authorization: `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`,
-
+              // Authorization: `token ${process.env.API_KEY}:${process.env.REQUEST_TOKEN}`,
+              // "api_key" : process.env.API_KEY,
+              // "request_token" : process.env.REQUEST_TOKEN,
             },
           })
           .then((response) => {
