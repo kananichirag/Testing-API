@@ -1,7 +1,5 @@
-var KiteConnect = require("kiteconnect").KiteConnect;
 const path = require("path");
 const axios = require("axios");
-var KiteTicker = require("kiteconnect").KiteTicker;
 require("dotenv").config({ path: path.join(__dirname, "./config/.env") });
 
 module.exports = {
@@ -45,6 +43,7 @@ module.exports = {
             headers: {
               "X-Kite-Version": "3",
               Authorization: `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`,
+
             },
           })
           .then((response) => {
@@ -68,6 +67,7 @@ module.exports = {
             headers: {
               "X-Kite-Version": "3",
               Authorization: `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`,
+
             },
           })
           .then((response) => {
