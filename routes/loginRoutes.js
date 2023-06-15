@@ -1,8 +1,8 @@
-const express = require('express')
+const express = require("express");
 const LoginRoute = express.Router();
-const LoginController = require('../controller/LoginController')
+const LoginController = require("../controller/LoginController");
 
-LoginRoute.post('/login',LoginController.Login)
-LoginRoute.get('/fund',LoginController.Funds)
+LoginRoute.post("/login", LoginController.Login);
+LoginRoute.get("/fund", LoginController.Funds);
 
-module.exports = LoginRoute
+module.exports = LoginRoute;
