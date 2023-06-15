@@ -40,8 +40,24 @@ const Position = async (req, res) => {
   }
 };
 
+
+const ConvertPosition = async (req, res) => {
+  try {
+    let resp = await PsServices.ConvertPosition();
+
+    if (resp) {
+      return response("Success..!!!", resp.data, 200, res);
+    }
+  } catch (error) {
+    console.log(error);
+    return response("SOmething Wrong....!!", {}, 500, res);
+  }
+};
+
+
 module.exports = {
   Holding,
   HoldingAuctionList,
   Position,
+  ConvertPosition
 };

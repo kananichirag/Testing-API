@@ -34,11 +34,12 @@ module.exports = {
 
 
 
-    FindByInstrument: (Name) => {
+    FindByInstrument: (Place,Name) => {
         return new Promise(async (res, rej) => {
             try {
                 const name = Name.toUpperCase();
-                axios.get(`https://api.kite.trade/quote?i=NSE:${name}`, {
+                const place = Place.toUpperCase();
+                axios.get(`https://api.kite.trade/quote?i=${place}:${name}`, {
                     headers: {
                         "X-Kite-Version": "3",
                         "Authorization": `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`

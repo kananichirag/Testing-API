@@ -76,4 +76,30 @@ module.exports = {
       }
     });
   },
+
+
+  ConvertPosition: () => {
+    return new Promise(async (res, rej) => {
+      try {
+        axios
+          .get("https://api.kite.trade/portfolio/positions", {
+            headers: {
+              "X-Kite-Version": "3",
+              Authorization: `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`,
+            },
+          })
+          .then((response) => {
+            res(response);
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } catch (error) {
+        console.log(error);
+        rej({ status: 500, message: "Something Went Wrong..!!!" });
+      }
+    });
+  },
+
 };

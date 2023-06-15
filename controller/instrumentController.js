@@ -18,11 +18,12 @@ const InstrumentList = async (req,res) => {
 
 const findbyInstrument = async (req,res) => {
     try {
-        if(!req.query.instrument){
-            return response("Instrument Nmae is Requied..!!",{},500,res)
+        if(!req.query.instrument || !req.query.place){
+            return response("Instrument Name And Place is Requied..!!",{},500,res)
         }
      let resp = await InstrumentServices.FindByInstrument(
-        req.query.instrument
+        req.query.instrument,
+        req.query.place,
      )
          if(resp){
             return response("Success..!!!",resp.data,200,res)
@@ -57,7 +58,7 @@ const ltp = async (req,res) => {
             return response("Instrument Nmae is Requied..!!",{},500,res)
         }
      let resp = await InstrumentServices.LTP(
-        req.query.instrument
+        req.query.instrument,
      )
          if(resp){
             return response("Success..!!!",resp.data,200,res)
