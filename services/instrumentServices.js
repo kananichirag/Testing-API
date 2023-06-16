@@ -38,7 +38,7 @@ module.exports = {
         return new Promise(async (res, rej) => {
             try {
                 const name = Name.toUpperCase();
-                axios.get(`https://api.kite.trade/quote?i=NSE:${name}`, {
+                axios.get(`https://api.kite.trade/quote?i=BSE:${name}`, {
                     headers: {
                         "X-Kite-Version": "3",
                         "Authorization": `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`

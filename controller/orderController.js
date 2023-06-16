@@ -52,13 +52,14 @@ const tradeById = async (req, res) => {
 const placeOrder = async (req, res) => {
   try {
     let resp = await orderServices.placeOrder(req.body);
+    console.log("resp",resp);
 
     if (resp) {
       return response("Success..!!!", resp.data, 200, res);
     }
   } catch (error) {
-    console.log(error);
-    return response("SOmething Wrong....!!", {}, 500, res);
+   // console.log(error);
+    return response(error.message, {}, 500, res);
   }
 };
 
