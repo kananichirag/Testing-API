@@ -19,7 +19,7 @@ const InstrumentList = async (req,res) => {
 const findbyInstrument = async (req,res) => {
     try {
         if(!req.query.instrument){
-            return response("Instrument Nmae is Requied..!!",{},500,res)
+            return response("Instrument Name is Requied..!!",{},500,res)
         }
      let resp = await InstrumentServices.FindByInstrument(
         req.query.instrument

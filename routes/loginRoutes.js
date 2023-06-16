@@ -4,6 +4,6 @@ const LoginController = require("../controller/LoginController");
 
 LoginRoute.post("/login", LoginController.Login);
 LoginRoute.post("/fund", LoginController.Funds);
-LoginRoute.post("/userProfile", LoginController.userProfile);
+LoginRoute.get("/userProfile", LoginController.userProfile);
 
 module.exports = LoginRoute;
