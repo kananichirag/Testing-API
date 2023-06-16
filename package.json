@@ -16,6 +16,7 @@
     "kiteconnect": "^4.1.0",
     "nodemon": "^2.0.22",
     "querystring": "^0.2.1",
-    "websocket": "^1.0.34"
+    "websocket": "^1.0.34",
+    "ws": "^7.4.2"
   }
 }

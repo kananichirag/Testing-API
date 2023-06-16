@@ -55,62 +55,119 @@ module.exports = {
   ws2: () => {
     return new Promise(async (res, rej) => {
       try {
-        const ws = new WebSocket(`wss://ws.kite.trade?api_key=${process.env.API_KEY}&access_token=${process.env.ACC_TOKEN}`);
 
-        ws.on('open', function () {
-          console.log('Connected to WebSocket');
-          message = { a: "mode", v: ["full", 408065] };
-          ws.send(JSON.stringify(message));
-          // We Send Data Here
-        });
 
-          // ws.on('message', function (data) {
-          //   const buffer = Buffer.from(data);
-          //   const parsedData = parseWebSocketMessage(buffer);
+
+       // Now, you can connect to the WebSocket using the access token
+       const ticker = new KiteTicker({
+        api_key: process.env.API_KEY,
+        access_token:process.env.ACC_TOKEN
+      });
+  
+      ticker.connect();
+  
+      // WebSocket event handlers and further processing
+      ticker.on('connect', () => {
+        console.log('WebSocket connection opened');
+        // Subscribe to the desired instruments or perform other actions
+        ticker.subscribe(['NSE:INFY', 'NSE:TCS']);
+        ticker.setMode(ticker.modeFull, ['NSE:INFY']);
+      });
+  
+      ticker.on('ticks', (ticks) => {
+        console.log('Received ticks:', ticks);
+        // Process the incoming WebSocket ticks
+      });
+  
+      ticker.on('close', () => {
+        console.log('WebSocket connection closed');
+        // Handle the WebSocket connection closure
+      });
+  
+      // Additional event handlers for errors, etc.
+    }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //   const ws = new WebSocket(`wss://ws.kite.trade?api_key=${process.env.API_KEY}&access_token=${process.env.ACC_TOKEN}`);
+
+      //   ws.on('open', function () {
+      //     console.log('Connected to WebSocket');
+      //     message = { a: "mode", v: ["full", 408065] };
+      //     ws.send(JSON.stringify(message));
+      //     // We Send Data Here
+      //   });
+
+      //     // ws.on('message', function (data) {
+      //     //   const buffer = Buffer.from(data);
+      //     //   const parsedData = parseWebSocketMessage(buffer);
             
-          //   console.log("Data ==>", parsedData);
-          // });
+      //     //   console.log("Data ==>", parsedData);
+      //     // });
       
 
 
-          // ws.on('message', function (data) {
-          //   try {
-          //     const bufferData = Buffer.from(data);
-          //     const originalData = bufferData.toString('utf-8');
-          //     const jsonData = JSON.parse(originalData);
+      //     // ws.on('message', function (data) {
+      //     //   try {
+      //     //     const bufferData = Buffer.from(data);
+      //     //     const originalData = bufferData.toString('utf-8');
+      //     //     const jsonData = JSON.parse(originalData);
           
-          //     console.log("Data:", jsonData);
-          //   } catch (error) {
-          //     console.error("Error parsing JSON:", error);
-          //     console.log("Received data:", data);
-          //   }
-          // });
+      //     //     console.log("Data:", jsonData);
+      //     //   } catch (error) {
+      //     //     console.error("Error parsing JSON:", error);
+      //     //     console.log("Received data:", data);
+      //     //   }
+      //     // });
 
 
 
 
-        ws.on('message', function (data) {
-          let MSG = data.toString()
-          const buffer = data;
-          console.log("datra",data);
-          const bufferData = Buffer.from([data]); 
-          const normalData = bufferData.toString('utf-8');  
-          console.log("Data ==>",normalData)
+      //   ws.on('message', function (data) {
+      //     let MSG = data.toString()
+      //     const buffer = data;
+      //     console.log("datra",data);
+      //     const bufferData = Buffer.from([data]); 
+      //     const normalData = bufferData.toString('utf-8');  
+      //     console.log("Data ==>",normalData)
 
-        });
-
-
-
-        ws.on('close', function () {
-          console.log('Disconnected from WebSocket');
-        });
-
-        ws.on('error', function (error) {
-          console.error('WebSocket error:', error);
-        });
+      //   });
 
 
-      } catch (error) {
+
+      //   ws.on('close', function () {
+      //     console.log('Disconnected from WebSocket');
+      //   });
+
+      //   ws.on('error', function (error) {
+      //     console.error('WebSocket error:', error);
+      //   });
+
+
+      // }
+       catch (error) {
         console.log(error);
         rej({ status: 500, message: "Something Went Wrong..!!!" });
       }
