@@ -2,6 +2,7 @@ const path = require("path");
 var KiteConnect = require("kiteconnect").KiteConnect;
 const axios = require("axios");
 require("dotenv").config({ path: path.join(__dirname, "./config/.env") });
+const qs = require("qs");
 
 module.exports = {
   login: () => {
@@ -66,17 +67,20 @@ module.exports = {
           .get("https://api.kite.trade/user/profile", {
             headers: {
               "X-Kite-Version": "3",
-              // Authorization: `token ${process.env.API_KEY}:${process.env.REQUEST_TOKEN}`,
-              // "api_key" : process.env.API_KEY,
-              // "request_token" : process.env.REQUEST_TOKEN,
+            },
+            params: {
+              api_key: process.env.API_KEY,
+              access_token: process.env.ACC_TOKEN,
+              // formData
             },
           })
           .then((response) => {
-            res(response);
-            console.log(response.data);
+            res(response.data);
+            // Handle the response data as needed
           })
           .catch((error) => {
-            console.error(error);
+            res(error);
+            // Handle any errors that occur during the request
           });
       } catch (error) {
         console.log(error);

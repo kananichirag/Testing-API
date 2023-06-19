@@ -28,7 +28,7 @@ const Funds = async (req, res) => {
 };
 const userProfile = async (req, res) => {
   try {
-    let resp = await UserServices.userProfile();
+    let resp = await UserServices.userProfile(req.body);
 
     if (resp) {
       return response("Success..!!!", resp.data, 200, res);
