@@ -9,7 +9,7 @@ const gttRoutes = require('../routes/gttRoutes')
 const historicalRoutes = require('../routes/historicalRoutes')
 
 v1.get("/", (req, res) => {
-  res.send("Index Route is Working..!!");
+  res.send("V1 Route is Working..!!");
 });
 
 

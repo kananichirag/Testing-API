@@ -141,28 +141,28 @@ module.exports = {
     });
   },
 
-
   // Modify an open or pending order
   modifyOrder: (variety, order_id, data) => {
     return new Promise(async (res, rej) => {
       try {
-        // axios
-        //   .get("https://api.kite.trade/orders/regular", {
-        //     headers: {
-        //       "X-Kite-Version": "3",
-        //       Authorization: `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`,
-        //     },
-        //   })
-        //   .then((response) => {
-        //     res(response);
-        // console.log(variety);
-        // console.log(order_id);
-        // console.log(data);
-        //   })
-        //   .catch((error) => {
-        //     console.error(error);
-        //   });
-        res(variety);
+        const updateData = qs.stringify(data);
+
+        const response = await axios.put(
+          `https://api.kite.trade/orders/regular/${order_id}`,
+          updateData,
+          {
+            headers: {
+              "X-Kite-Version": "3",
+              Authorization: `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`,
+            },
+          }
+        );
+
+        if (response) {
+          res({ status: 200, data: response.data });
+        } else {
+          rej({ status: 404, message: "something went wrong!!" });
+        }
       } catch (error) {
         console.log(error);
         rej({ status: 500, message: "Something Went Wrong..!!!" });
@@ -174,23 +174,21 @@ module.exports = {
   deleteOrder: (variety, order_id) => {
     return new Promise(async (res, rej) => {
       try {
-        // axios
-        //   .get("https://api.kite.trade/orders/regular", {
-        //     headers: {
-        //       "X-Kite-Version": "3",
-        //       Authorization: `token ${process.env.API_KEY}:${process.env.ACC_TOKEN}`,
-        //     },
-        //   })
-        //   .then((response) => {
-        //     res(response);
-        console.log(variety);
-        console.log(order_id);
-        // console.log(data);
-        //   })
-        //   .catch((error) => {
-        //     console.error(error);
-        //   });
-        res(variety);
+        const response = await axios.delete(
+          "https://api.kite.trade/orders/regular/" + order_id,
+          {
+            headers: {
+              "X-Kite-Version": "3",
+              Authorization:
+                "token " + process.env.API_KEY + ":" + process.env.ACC_TOKEN,
+            },
+          }
+        );
+        if (response) {
+          res({ status: 200, data: response.data });
+        } else {
+          rej({ status: 404, message: "something went wrong!!" });
+        }
       } catch (error) {
         console.log(error);
         rej({ status: 500, message: "Something Went Wrong..!!!" });

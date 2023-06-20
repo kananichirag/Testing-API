@@ -43,7 +43,7 @@ module.exports = {
 
         function subscribe() {
           // var items = ['TATAMOTORS'];
-          var items = [128120324];
+          var items = [884737];
           ticker.subscribe(items);
           ticker.setMode(ticker.modeFull, items);
         }

@@ -72,7 +72,7 @@ const modifyOrder = async (req, res) => {
     );
 
     if (resp) {
-      return response("Success..!!!", resp.data, 200, res);
+      return response("Modify Order Successfully..!!!", resp.data, 200, res);
     }
   } catch (error) {
     console.log(error);
@@ -87,7 +87,7 @@ const deleteOrder = async (req, res) => {
     );
 
     if (resp) {
-      return response("Success..!!!", resp.data, 200, res);
+      return response("Order Cancel Successfully..!!!", resp.data.data, 200, res);
     }
   } catch (error) {
     console.log(error);

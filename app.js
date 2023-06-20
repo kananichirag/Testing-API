@@ -11,6 +11,10 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/v1", IndexRoutes);
 
+app.get("/", (req, res) => {
+  res.send("App Route is Working..!!");
+});
+
 app.listen(process.env.PORT, () =>
   console.log(`🚀 Server Start At ${process.env.PORT}..!!!`)
 );

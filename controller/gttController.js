@@ -54,7 +54,7 @@ const deleteGtt = async (req, res) => {
     let resp = await gttServices.deleteGtt(req.params.id);
 
     if (resp) {
-      return response("Success..!!!", resp.data, 200, res);
+      return response("Delete GTT Successfully..!!!", resp.data, 200, res);
     }
   } catch (error) {
     console.log(error);
